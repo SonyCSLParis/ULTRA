@@ -1046,6 +1046,176 @@ class WikiTopicsMT4(MTDEAInductive):
     def __init__(self, **kwargs):
         super(WikiTopicsMT4, self).__init__(**kwargs)
 
+class NarrativeDataset(TransductiveDataset):
+    urls = []
+    name = "NarrativeDataset"
+    @property
+    def raw_file_names(self):
+        return [
+            "train.txt",
+            "valid.txt",
+            "test.txt",
+        ]
+
+class NarrativeDatasetProp0Subevent0Role0Causation0SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_0_role_0_causation_0_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp0Subevent0Role0Causation1SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_0_role_0_causation_1_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp0Subevent0Role0Causation1SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_0_role_0_causation_1_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp0Subevent0Role0Causation1SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_0_role_0_causation_1_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp0Subevent0Role1Causation0SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_0_role_1_causation_0_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp0Subevent0Role1Causation0SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_0_role_1_causation_0_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp0Subevent0Role1Causation0SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_0_role_1_causation_0_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp0Subevent0Role1Causation1SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_0_role_1_causation_1_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp0Subevent0Role1Causation1SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_0_role_1_causation_1_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp0Subevent0Role1Causation1SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_0_role_1_causation_1_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp0Subevent1Role0Causation0SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_1_role_0_causation_0_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp0Subevent1Role0Causation1SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_1_role_0_causation_1_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp0Subevent1Role0Causation1SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_1_role_0_causation_1_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp0Subevent1Role0Causation1SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_1_role_0_causation_1_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp0Subevent1Role1Causation0SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_1_role_1_causation_0_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp0Subevent1Role1Causation0SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_1_role_1_causation_0_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp0Subevent1Role1Causation0SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_1_role_1_causation_0_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp0Subevent1Role1Causation1SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_1_role_1_causation_1_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp0Subevent1Role1Causation1SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_1_role_1_causation_1_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp0Subevent1Role1Causation1SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_0_subevent_1_role_1_causation_1_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp1Subevent0Role0Causation0SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_0_role_0_causation_0_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp1Subevent0Role0Causation1SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_0_role_0_causation_1_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp1Subevent0Role0Causation1SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_0_role_0_causation_1_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp1Subevent0Role0Causation1SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_0_role_0_causation_1_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp1Subevent0Role1Causation0SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_0_role_1_causation_0_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp1Subevent0Role1Causation0SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_0_role_1_causation_0_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp1Subevent0Role1Causation0SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_0_role_1_causation_0_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp1Subevent0Role1Causation1SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_0_role_1_causation_1_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp1Subevent0Role1Causation1SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_0_role_1_causation_1_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp1Subevent0Role1Causation1SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_0_role_1_causation_1_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp1Subevent1Role0Causation0SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_1_role_0_causation_0_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp1Subevent1Role0Causation1SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_1_role_0_causation_1_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp1Subevent1Role0Causation1SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_1_role_0_causation_1_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp1Subevent1Role0Causation1SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_1_role_0_causation_1_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp1Subevent1Role1Causation0SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_1_role_1_causation_0_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp1Subevent1Role1Causation0SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_1_role_1_causation_0_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp1Subevent1Role1Causation0SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_1_role_1_causation_0_syntax_simple_rdf_prop"
+
+class NarrativeDatasetProp1Subevent1Role1Causation1SyntaxSimpleRdfReification(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_1_role_1_causation_1_syntax_simple_rdf_reification"
+
+class NarrativeDatasetProp1Subevent1Role1Causation1SyntaxSimpleRdfSp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_1_role_1_causation_1_syntax_simple_rdf_sp"
+
+class NarrativeDatasetProp1Subevent1Role1Causation1SyntaxSimpleRdfProp(NarrativeDataset):
+    urls = []
+    name = "kg_base_prop_1_subevent_1_role_1_causation_1_syntax_simple_rdf_prop"
 
 # a joint dataset for pre-training ULTRA on several graphs
 class JointDataset(InMemoryDataset):
@@ -1061,6 +1231,26 @@ class JointDataset(InMemoryDataset):
         'DBpedia100k': DBpedia100k,
         'YAGO310': YAGO310,
         'AristoV4': AristoV4,
+        'NarrativeDatasetProp0Subevent0Role0Causation0SyntaxSimpleRdfProp': NarrativeDatasetProp0Subevent0Role0Causation0SyntaxSimpleRdfProp,
+        'NarrativeDatasetProp0Subevent0Role0Causation1SyntaxSimpleRdfReification': NarrativeDatasetProp0Subevent0Role0Causation1SyntaxSimpleRdfReification,
+        'NarrativeDatasetProp0Subevent0Role0Causation1SyntaxSimpleRdfSp': NarrativeDatasetProp0Subevent0Role0Causation1SyntaxSimpleRdfSp,
+        'NarrativeDatasetProp0Subevent0Role0Causation1SyntaxSimpleRdfProp': NarrativeDatasetProp0Subevent0Role0Causation1SyntaxSimpleRdfProp,
+        'NarrativeDatasetProp0Subevent0Role1Causation0SyntaxSimpleRdfReification': NarrativeDatasetProp0Subevent0Role1Causation0SyntaxSimpleRdfReification,
+        'NarrativeDatasetProp0Subevent0Role1Causation0SyntaxSimpleRdfSp': NarrativeDatasetProp0Subevent0Role1Causation0SyntaxSimpleRdfSp,
+        'NarrativeDatasetProp0Subevent0Role1Causation0SyntaxSimpleRdfProp': NarrativeDatasetProp0Subevent0Role1Causation0SyntaxSimpleRdfProp,
+        'NarrativeDatasetProp0Subevent0Role1Causation1SyntaxSimpleRdfReification': NarrativeDatasetProp0Subevent0Role1Causation1SyntaxSimpleRdfReification,
+        'NarrativeDatasetProp0Subevent0Role1Causation1SyntaxSimpleRdfSp': NarrativeDatasetProp0Subevent0Role1Causation1SyntaxSimpleRdfSp,
+        'NarrativeDatasetProp0Subevent0Role1Causation1SyntaxSimpleRdfProp': NarrativeDatasetProp0Subevent0Role1Causation1SyntaxSimpleRdfProp,
+        'NarrativeDatasetProp0Subevent1Role0Causation0SyntaxSimpleRdfProp': NarrativeDatasetProp0Subevent1Role0Causation0SyntaxSimpleRdfProp,
+        'NarrativeDatasetProp0Subevent1Role0Causation1SyntaxSimpleRdfReification': NarrativeDatasetProp0Subevent1Role0Causation1SyntaxSimpleRdfReification,
+        'NarrativeDatasetProp0Subevent1Role0Causation1SyntaxSimpleRdfSp': NarrativeDatasetProp0Subevent1Role0Causation1SyntaxSimpleRdfSp,
+        'NarrativeDatasetProp0Subevent1Role0Causation1SyntaxSimpleRdfProp': NarrativeDatasetProp0Subevent1Role0Causation1SyntaxSimpleRdfProp,
+        'NarrativeDatasetProp0Subevent1Role1Causation0SyntaxSimpleRdfReification': NarrativeDatasetProp0Subevent1Role1Causation0SyntaxSimpleRdfReification,
+        'NarrativeDatasetProp0Subevent1Role1Causation0SyntaxSimpleRdfSp': NarrativeDatasetProp0Subevent1Role1Causation0SyntaxSimpleRdfSp,
+        'NarrativeDatasetProp0Subevent1Role1Causation0SyntaxSimpleRdfProp': NarrativeDatasetProp0Subevent1Role1Causation0SyntaxSimpleRdfProp,
+        'NarrativeDatasetProp0Subevent1Role1Causation1SyntaxSimpleRdfReification': NarrativeDatasetProp0Subevent1Role1Causation1SyntaxSimpleRdfReification,
+        'NarrativeDatasetProp0Subevent1Role1Causation1SyntaxSimpleRdfSp': NarrativeDatasetProp0Subevent1Role1Causation1SyntaxSimpleRdfSp,
+        'NarrativeDatasetProp0Subevent1Role1Causation1SyntaxSimpleRdfProp': NarrativeDatasetProp0Subevent1Role1Causation1SyntaxSimpleRdfProp,
     }
 
     def __init__(self, root, graphs, transform=None, pre_transform=None):

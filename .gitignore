@@ -164,3 +164,7 @@ output/
 .DS_Store
 kg-datasets/
 *.csv
+
+# Newly added after fork
+narrative/experiments/
+ultra_50g/
