@@ -78,8 +78,8 @@ def parse_ultra_log(log_file_path):
 def get_info(dataset):
     res = {}
     for name in ["prop", "subevent", "role", "causation"]:
-        res[name] = 1 if f"{name.capitalize()}1" in dataset else 0
-    res["syntax"] = dataset.split("Syntax")[1]
+        res[name] = 1 if f"{name}_1" in dataset else 0
+    res["syntax"] = dataset.split("syntax_")[1].split("_log.txt")[0]
     return res
 
 @click.command()
@@ -100,9 +100,9 @@ def main(folder):
     """
 
     data = []
-    models = [x for x in os.listdir(folder) if x.startswith("NarrativeDataset")]
+    models = [x for x in os.listdir(folder) if x.startswith("kg_base")]
     for m in models:
-        cp_file = os.path.join(folder, m + '_log.txt')
+        cp_file = os.path.join(folder, m)
         res = parse_ultra_log(cp_file)
         config = get_config(cp_file)
         d_info = get_info(dataset=m)

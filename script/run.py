@@ -265,7 +265,8 @@ if __name__ == "__main__":
         # Grail, MTDEA, HM datasets have validation sets based off the training graph
         # ILPC, Ingram have validation sets from the inference graph
         # filtering dataset should contain all true edges (base graph + (valid) + test) 
-        if "ILPC" in cfg.dataset['class'] or "Ingram" in cfg.dataset['class']:
+        #if "ILPC" in cfg.dataset['class'] or "Ingram" in cfg.dataset['class']:
+        if any(x in cfg.dataset['class'] for x in ["ILPC", "Ingram", "Narrative"]):
             # add inference, valid, test as the validation and test filtering graphs
             full_inference_edges = torch.cat([valid_data.edge_index, valid_data.target_edge_index, test_data.target_edge_index], dim=1)
             full_inference_etypes = torch.cat([valid_data.edge_type, valid_data.target_edge_type, test_data.target_edge_type])

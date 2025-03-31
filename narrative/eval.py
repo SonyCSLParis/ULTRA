@@ -11,25 +11,28 @@ from loguru import logger
 CHECKPOINTS = ["ultra_3g.pth", "ultra_4g.pth", "ultra_50g.pth"]
 FOLDER_M = os.path.expanduser("~/git/ULTRA/output/Ultra/")
 
-def get_narrative_dataset_classes() -> List[str]:
+def get_narrative_dataset_classes(start_with: str = "NarrativeInductiveDataset") -> List[str]:
     """
-    Find all classes in ultra/datasets.py that start with NarrativeDataset.
+    Find all classes in ultra/datasets.py that start with NarrativeInductiveDataset.
     
     Returns:
-        List[str]: List of NarrativeDataset class names
+        List[str]: List of NarrativeInductiveDataset class names
     """
     datasets_file = os.path.join("ultra", "datasets.py")
 
     narrative_classes = []
-    class_pattern = re.compile(r"^class (NarrativeDataset[^\(]*)")
+    class_pattern = re.compile(r"^class (" + start_with + r"[^\(]*)")
 
     with open(datasets_file, 'r', encoding='utf-8') as f:
         for line in f:
             match = class_pattern.match(line.strip())
-            if match and match.group(1) != "NarrativeDataset":
+            if match and match.group(1) != start_with:
                 narrative_classes.append(match.group(1))
 
     return narrative_classes
+
+def get_narrative_dataset_versions(path):
+    return [x for x in os.listdir(path) if x.startswith("kg_base")]
 
 
 def get_command(mode, info):
@@ -38,8 +41,10 @@ def get_command(mode, info):
     if mode == "zero-shot":
         command = f"""
         python -m torch.distributed.launch --nproc_per_node=2 \
-            script/run.py -c config/transductive/inference.yaml \
-                --dataset {info['dataset']} --epochs {info['epoch']} --bpe {info['bpe']} --gpus [0,1] --ckpt {info['ckpt']}
+            script/run.py -c config/inductive/inference.yaml \
+                --dataset {info['dataset']} --epochs {info['epoch']} \
+                    --bpe {info['bpe']} --gpus [0,1] --ckpt {info['ckpt']} \
+                        --version {info['version']} 
         """
 
     elif mode == "fine-tune":
@@ -47,7 +52,8 @@ def get_command(mode, info):
         python -m torch.distributed.launch --nproc_per_node=2 \
             script/run.py -c narrative/config/fine_tune.yaml \
                 --finetune --dataset {info['dataset']} --epochs {info['epoch']} \
-                    --bpe {info['bpe']} --gpus [0,1] --ckpt {info['ckpt']} --batch_size {info['bs']}
+                    --bpe {info['bpe']} --gpus [0,1] --ckpt {info['ckpt']} \
+                        --batch_size {info['bs']} --version {info['version']}
         """
 
     else:
@@ -55,20 +61,20 @@ def get_command(mode, info):
         python -m torch.distributed.launch --nproc_per_node=2 \
             script/pretrain.py -c narrative/config/pretrain.yaml \
                 --graphs [{info['dataset']}] --epochs {info['epoch']} \
-                    --bpe {info['bpe']} --gpus [0,1] --batch_size {info['bs']}
+                    --bpe {info['bpe']} --gpus [0,1] --batch_size {info['bs']} --version {info['version']}
         """
 
     return command
 
 
-def cp_latest_log_file(m, mode, folder):
+def cp_latest_log_file(m, v, mode, folder):
     """ Copy latest log file of model {m} to {folder} """
     if mode == "pretrain":
         curr_folder = os.path.join(FOLDER_M, "JointDataset")
     else:
         curr_folder = os.path.join(FOLDER_M, m)
     exp = sorted(os.listdir(curr_folder))[-1]
-    cp_file = os.path.join(folder, m + '_log.txt')
+    cp_file = os.path.join(folder, v + '_log.txt')
     command = f"cp {os.path.join(curr_folder, exp, 'log.txt')} {cp_file}"
     subprocess.call(command, shell=True)
 
@@ -77,9 +83,11 @@ def cp_latest_log_file(m, mode, folder):
 @click.argument("mode", type=click.Choice(["zero-shot", "fine-tune", "pretrain"]))
 @click.argument("ckpt_p", type=click.Path(exists=True))
 @click.argument("folder_out")
-@click.option('--include_role', is_flag=True, default=True,
+@click.argument("version_f")
+@click.argument("dataset")
+@click.option('--include_role/--no-include-role', is_flag=True, default=True,
               help="Whether to include roles in the scripts (much bigger files)")
-def main(mode, ckpt_p, folder_out, include_role):
+def main(mode, ckpt_p, folder_out, version_f, dataset, include_role):
     """
     Execute evaluation runs for narrative KGs across different configurations.
     This function orchestrates the execution of experiments for narrative KGs
@@ -104,9 +112,9 @@ def main(mode, ckpt_p, folder_out, include_role):
     It skips configurations that have already been run (determined by the existence of log files).
     """
 
-    narrative_classes = get_narrative_dataset_classes()
+    versions = get_narrative_dataset_versions(version_f)
     if not include_role:
-        narrative_classes = [d for d in narrative_classes if "Role1" not in d]
+        versions = [d for d in versions if "role_1" not in d]
     if not os.path.exists(folder_out):
         os.makedirs(folder_out)
 
@@ -135,17 +143,18 @@ def main(mode, ckpt_p, folder_out, include_role):
                                       f"ckpt_{ckpt_short}_epochs_{epoch}_bpe_{bpe}_bs_{bs}")
                     if not os.path.exists(fp):
                         os.makedirs(fp)
-                    for d in narrative_classes:
-                        logger.info(f"Config: DATASET {d} | CKPT {ckpt_n} | " + \
+                    for v in versions:
+                        logger.info(f"Config: DATASET {dataset} | VERSION {v} | CKPT {ckpt_n} | " + \
                             f"EPOCH {epoch} | BPE {bpe}")
-                        log_name = f"{d}_log.txt"
+                        log_name = f"{v}_log.txt"
                         if not os.path.exists(os.path.join(fp, log_name)):
                             logger.info("Running config")
                             command = get_command(
-                                mode, {"dataset": d, "epoch": epoch, "bpe": bpe,
-                                       "ckpt": os.path.join(ckpt_p, ckpt_n), "bs": bs})
+                                mode, {"dataset": dataset, "epoch": epoch, "bpe": bpe,
+                                       "ckpt": os.path.join(ckpt_p, ckpt_n), "bs": bs,
+                                       "version": v})
                             subprocess.call(command, shell=True)
-                            cp_latest_log_file(d, mode, fp)
+                            cp_latest_log_file(dataset, v, mode, fp)
                         else:
                             logger.info("Config already run")
                         logger.info("--------------------")
