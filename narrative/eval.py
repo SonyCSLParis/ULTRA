@@ -56,11 +56,11 @@ def get_command(mode, info):
                         --batch_size {info['bs']} --version {info['version']}
         """
 
-    else:
+    else:  # mode == "train-no-ckpt"
         command = f"""
         python -m torch.distributed.launch --nproc_per_node=2 \
-            script/pretrain.py -c narrative/config/pretrain.yaml \
-                --graphs [{info['dataset']}] --epochs {info['epoch']} \
+            script/run.py -c narrative/config/inference_no_ckpt.yaml \
+                --dataset {info['dataset']} --epochs {info['epoch']} \
                     --bpe {info['bpe']} --gpus [0,1] --batch_size {info['bs']} --version {info['version']}
         """
 
@@ -80,7 +80,7 @@ def cp_latest_log_file(m, v, mode, folder):
 
 
 @click.command()
-@click.argument("mode", type=click.Choice(["zero-shot", "fine-tune", "pretrain"]))
+@click.argument("mode", type=click.Choice(["zero-shot", "fine-tune", "train-no-ckpt"]))
 @click.argument("ckpt_p", type=click.Path(exists=True))
 @click.argument("folder_out")
 @click.argument("version_f")
@@ -97,7 +97,7 @@ def main(mode, ckpt_p, folder_out, version_f, dataset, include_role):
     Parameters
     ----------
     mode : str
-        The evaluation mode: 'zero-shot', 'fine-tune', or 'pretrain', which determines
+        The evaluation mode: 'zero-shot', 'fine-tune', or 'train-no-ckpt', which determines
         the hyperparameter sets to use.
     ckpt_p : str
         Path to the directory containing model checkpoints.
@@ -126,12 +126,12 @@ def main(mode, ckpt_p, folder_out, version_f, dataset, include_role):
         epochs = [1, 3, 5]
         bpes = [100, 1000, 2000, 4000]
         batch_size = [16, 64]
-    else:  # mode == "pretrain"
+    else:  # mode == "train-no-ckpt"
         epochs = [5, 10]
         bpes = [1000, 2000]
         batch_size = [16, 64]
 
-    checkpoints = CHECKPOINTS if mode != "pretrain" else ["ckpt"]
+    checkpoints = CHECKPOINTS if mode != "train-no-ckpt" else ["ckpt"]
 
     # Run one exp per ckpt+epochs+bpe
     for ckpt_n in checkpoints:

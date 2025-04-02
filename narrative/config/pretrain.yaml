@@ -1,9 +1,10 @@
 output_dir: ~/git/ULTRA/output
 
 dataset:
-  class: JointDataset
+  class: JointNarrativeDataset
   graphs: {{ graphs }}
   root: ~/git/ULTRA/kg-datasets/
+  version: {{ version }}
 
 model:
   class: Ultra
