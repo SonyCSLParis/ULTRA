@@ -2,6 +2,7 @@
 """ Run ULTRA experiments """
 import os
 import re
+import torch
 import subprocess
 from typing import List
 
@@ -154,6 +155,9 @@ def main(mode, ckpt_p, folder_out, version_f, dataset, include_role):
                                        "ckpt": os.path.join(ckpt_p, ckpt_n), "bs": bs,
                                        "version": v})
                             subprocess.call(command, shell=True)
+                            # Clear CUDA cache after running the command
+                            torch.cuda.empty_cache()
+                            logger.info("CUDA cache cleared")
                             cp_latest_log_file(dataset, v, mode, fp)
                         else:
                             logger.info("Config already run")
