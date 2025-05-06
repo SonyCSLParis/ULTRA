@@ -1,0 +1,17 @@
+,prop,subevent,role,causation,ckpt_nb,train_batch_per_epoch,train_batch_size,train_num_epoch,batch_per_epoch,batch_size,mode_numeric,exp_count,method,td
+220,0,0,0,0,3,100.0,16,1,100,16,0,83,ULTRA,simple-triple
+384,1,0,0,0,3,2000.0,16,3,2000,16,0,83,ULTRA,simple-triple
+576,1,1,0,0,50,4000.0,16,5,4000,16,0,43,ULTRA,simple-triple
+577,1,1,0,1,50,4000.0,16,5,4000,16,0,129,ULTRA,simple-triple
+737,0,0,0,1,3,4000.0,64,1,4000,64,0,248,ULTRA,simple-triple
+891,1,0,0,1,50,1000.0,16,3,1000,16,0,249,ULTRA,simple-triple
+998,0,1,0,0,50,100.0,16,1,100,16,0,83,ULTRA,simple-triple
+1121,0,0,1,0,50,,16,0,0,8,2,9,ULTRA,simple-triple
+1122,0,1,1,1,50,,16,0,0,8,2,6,ULTRA,simple-triple
+1123,1,1,1,1,50,,16,0,0,8,2,6,ULTRA,simple-triple
+1127,0,1,0,1,50,,16,0,0,8,2,249,ULTRA,simple-triple
+1129,1,0,1,1,50,,16,0,0,8,2,9,ULTRA,simple-triple
+1130,1,1,1,0,50,,16,0,0,8,2,6,ULTRA,simple-triple
+1133,0,0,1,1,50,,16,0,0,8,2,9,ULTRA,simple-triple
+1151,0,1,1,0,50,,16,0,0,8,2,6,ULTRA,simple-triple
+1153,1,0,1,0,50,,16,0,0,8,2,8,ULTRA,simple-triple

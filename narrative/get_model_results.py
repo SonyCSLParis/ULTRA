@@ -108,7 +108,10 @@ def main(folder):
         d_info = get_info(dataset=m)
         data.append(concat_collapse_dict([d_info, config, res]))
 
-    pd.DataFrame(data).to_csv(os.path.join(folder, "results.csv"))
+    df = pd.DataFrame(data)
+    if "checkpoint" in df.columns:
+        df["checkpoint"]=df["checkpoint"].apply(lambda x: x.split("/Projects/")[1])
+    df.to_csv(os.path.join(folder, "results.csv"))
 
 
 if __name__ == '__main__':

@@ -1,5 +1,29 @@
 <div align="center">
 
+# From Symbols to Numbers: Measuring the Impact of Narrative Complexity on Embeddings
+
+We use this method to investigate how narrative semantic and syntactic levels impact embedding performance. For ULTRA, we are more particularly interested in simple RDF syntaxes and inductive training.
+
+Forked from the [original repository](https://github.com/DeepGraphLearning/ULTRA)
+
+Main changes to the core code:
+* Adding a custom `NarrativeInductiveDataset` class, and slightly modified `process` function to save vocabulary
+
+All the content related to the narrative analysis is in the `narrative` folder:
+* `config` folder: custom configuration files used for our experiments
+* `get_model_results.py`: extract results as `.csv.` from a folder (parsing log files)
+* `eval.py`: script to train and evaluate the models
+* `fg_run.py`: single script, analysing SEM predicates
+* `analysis.ipynb`: analysis results used in the paper
+* `experiments` and `results` folder: raw results of the experiments, and main `.csv` with results, respectively.
+
+
+* `analyse_best_config.py`: analyse config from the `best_configs` folder to narrow down the search space
+
+* `analysis.py`: gathering results
+
+
+
 # ULTRA: Towards Foundation Models for Knowledge Graph Reasoning #
 
 [![pytorch](https://img.shields.io/badge/PyTorch_2.1+-ee4c2c?logo=pytorch&logoColor=white)](https://pytorch.org/get-started/locally/)
