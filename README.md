@@ -1,4 +1,4 @@
-<div align="center">
+
 
 # From Symbols to Numbers: Measuring the Impact of Narrative Complexity on Embeddings
 
@@ -22,7 +22,9 @@ All the content related to the narrative analysis is in the `narrative` folder:
 
 * `analysis.py`: gathering results
 
+#
 
+<div align="center">
 
 # ULTRA: Towards Foundation Models for Knowledge Graph Reasoning #
 
